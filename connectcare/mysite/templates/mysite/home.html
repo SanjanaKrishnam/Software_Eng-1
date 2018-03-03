@@ -7,12 +7,16 @@
 </head>
   {% if user.is_authenticated %}
   <meta http-equiv="refresh" content="0;url = home" />
+  <p><a href="home">Click here if not automatically redirected</a></p>
   {% endif %}
 <body>
+    {% if user.is_authenticated %}
+    {% else %}
     <h1>Welcome to ConnectCare</h1>
     <p><a href="/login">Login to continue</a></p>
     <p> Are you a new user?</p>
     <p><a href="/register">Register</a></p>
+      {% endif %}
 </body>
 </html>
 {% endblock %}
