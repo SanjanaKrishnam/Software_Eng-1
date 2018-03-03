@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django import forms
 from .forms import UserRegistrationForm
+from django.contrib import messages
 # Create your views here.
 def home(request):
     return render(request, 'mysite/home.html')
@@ -21,7 +22,8 @@ def register(request):
                 login(request, user)
                 return HttpResponseRedirect('/')
             else:
-                raise forms.ValidationError('Looks like a username with that email or password already exists')
+                messages.info(request,'Username or e-mail id has already been registered')
+                form = UserRegistrationForm()
     else:
         form = UserRegistrationForm()
     return render(request, 'mysite/register.html', {'form' : form})
