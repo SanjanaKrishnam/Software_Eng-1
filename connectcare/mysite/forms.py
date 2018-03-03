@@ -7,7 +7,7 @@ class UserRegistrationForm(forms.Form):
     )
     email = forms.CharField(
         required = True,
-        label = 'Email',
+        label = 'Email-id',
         max_length = 32,
     )
     password = forms.CharField(
