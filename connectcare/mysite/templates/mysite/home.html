@@ -1,16 +1,18 @@
-<!DOCTYPE html>
+
+
+{% block content %}
 <html>
 <head>
-    <title>Home</title>
+    <title>ConnectCare</title>
 </head>
+  {% if user.is_authenticated %}
+  <meta http-equiv="refresh" content="0;url = home" />
+  {% endif %}
 <body>
-    {% if user.is_authenticated %}
-    <p>hello</p>
-    <p>welcome {{ user.username }}</p>
-    <p><a href="/logout">Logout</a></p>
-    {% else %}
-    <p><a href="/login">Login</a></p>
+    <h1>Welcome to ConnectCare</h1>
+    <p><a href="/login">Login to continue</a></p>
+    <p> Are you a new user?</p>
     <p><a href="/register">Register</a></p>
-    {% endif %}
 </body>
 </html>
+{% endblock %}
