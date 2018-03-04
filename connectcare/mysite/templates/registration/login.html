@@ -1,6 +1,9 @@
 
 
 {% block content %}
+  {% if user.is_authenticated %}
+  <meta http-equiv="refresh" content="0;url = /home" />
+  {% endif %}
   <h1>Login</h1>
   <form method="post">
     {% csrf_token %}
