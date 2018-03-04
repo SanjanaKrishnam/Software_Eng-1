@@ -1,0 +1,11 @@
+<title>ConnectCare</title>
+{% block content %}
+  {% if user.is_authenticated %}
+  <head> Welcome <b>{{ user.get_username }}</b> </head>
+  <body>
+    <a href="/logout"> Click To logout</a>
+  </body>
+  {% else  %}
+  <meta http-equiv="refresh" content="0;url = /" />
+  {% endif %}
+{% endblock %}
