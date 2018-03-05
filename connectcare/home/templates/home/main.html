@@ -2,8 +2,9 @@
 {% block content %}
   {% if user.is_authenticated %}
   <head> Welcome <b>{{ user.get_username }}</b> </head>
+  <a href = "/view"> </br>View/Upload files</a>
   <body>
-    <a href="/logout"> Click To logout</a>
+    <a href="/logout"> </br>Click To logout</a>
   </body>
   {% else  %}
   <meta http-equiv="refresh" content="0;url = /" />

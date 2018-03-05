@@ -6,7 +6,7 @@ from .models import Document
 from .forms import DocumentForm
 
 def home(request):
-    documents = Document.objects.all()
+    documents = Document.objects.filter(user = request.user.username)
     return render(request, 'uploads/home.html', { 'documents': documents })
 
 
@@ -18,6 +18,7 @@ def upl(request):
         uploaded_file_url = fs.url(filename)
         a = Document()
         a.document.name = filename
+        a.user = request.user.username
         a.description = filename
         a.save()
         return render(request, 'uploads/simple_upload.html', {
