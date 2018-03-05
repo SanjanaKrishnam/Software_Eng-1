@@ -7,7 +7,7 @@ from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-@login_required()
+
 def home(request):
     return render(request, 'mysite/home.html')
 def register(request):
