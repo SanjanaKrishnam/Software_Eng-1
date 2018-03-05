@@ -16,7 +16,11 @@ def upl(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
+        a = Document()
+        a.document.name = filename
+        a.description = filename
+        a.save()
         return render(request, 'uploads/simple_upload.html', {
-            'uploaded_file_url': uploaded_file_url
+            'uploaded_file_url': uploaded_file_url,'name':filename
         })
     return render(request, 'uploads/simple_upload.html')
