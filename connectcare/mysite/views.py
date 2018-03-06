@@ -22,7 +22,7 @@ def register(request):
                 User.objects.create_user(username, email, password)
                 user = authenticate(username = username, password = password)
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/profile')
             else:
                 messages.info(request,'Username or e-mail id has already been registered')
                 form = UserRegistrationForm()

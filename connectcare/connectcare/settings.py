@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mysite',
     'home',
     'uploads',
+    'profiledet',
 ]
 
 

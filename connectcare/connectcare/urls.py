@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^',include('mysite.urls')),
     url(r'^home/',include('home.urls')),
+    url(r'^profile/',include('profiledet.urls')),
     url(r'^view/$',views.home),
     url(r'^view/uploads/$',views.upl),
     url(r'^login/$', auth_views.login, name='login'),
