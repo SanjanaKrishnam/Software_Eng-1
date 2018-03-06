@@ -4,7 +4,12 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django import forms
 from django.contrib.auth.decorators import login_required
+from .models import USERMODEL
+from .forms import UserTypeForm
+from django.views.generic import TemplateView, ListView, CreateView
 
-@login_required()
-def home(request):
-    return render(request,'profiledet/Profile.html')
+
+class CreateMyModelView(CreateView):
+    model = USERMODEL
+    form_class = UserTypeForm
+    template_name = 'profiledet/Profile.html'
