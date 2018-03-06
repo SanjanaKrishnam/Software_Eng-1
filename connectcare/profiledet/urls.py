@@ -1,10 +1,10 @@
 from django.conf.urls import url, include
 from django.urls import path
 from django.contrib import admin
-from .views import CreateMyModelView
+from .views import showform
 
 
 urlpatterns =[
-url(r'^$',CreateMyModelView.as_view()),
+url(r'^$',showform),
 
 ]
