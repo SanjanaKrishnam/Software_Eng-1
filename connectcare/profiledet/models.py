@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User, UserManager
 # Create your models here.
 USER_CHOICES = (('Public','PUBLIC'),('Patient','PATIENT'),('Doctor','DOCTOR'),)
 BG = (('AB+','AB+'),('AB-','AB-'),('A+','A+'),('A-','A-'),('B+','B+'),('B-','B-'),('O+','O+'),('O-','O-'))
