@@ -28,4 +28,4 @@ def showform(request):
         return render(request,'profiledet/Profile.html',context)
     else:
         context = {'type':p}
-        return render(request,'profiledet/Pro2.html',context)
+        return render(request,'profiledet/Final.html',context)
