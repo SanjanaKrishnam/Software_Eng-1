@@ -19,7 +19,12 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Login</button>
+	    <button type="submit">Login</button>
+	    <br>
+	    <br>
+	    <input type="button" onclick="location.href='/register';" value="Register"/>
+	    <button type="button" onclick="location.href='/register'">Register</button>
+           
         </form>
 
 	</div>
