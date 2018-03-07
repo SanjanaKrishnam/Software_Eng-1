@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django import forms
 from django.contrib.auth.decorators import login_required
 from .models import USERMODEL
-from .forms import UserTypeForm
+from .forms import UserTypeForm, ExtraForm
 from django.views.generic import TemplateView, ListView, CreateView
 
 
@@ -28,5 +28,15 @@ def showform(request):
         return render(request,'profiledet/Profile.html',context)
     else:
         p = USERMODEL.objects.get(name = request.user.username)
-        context = {'type':p}
-        return render(request,'profiledet/Final.html',context)
+        if p.type == 'Doctor' and p.qual is None :
+            form = ExtraForm(request.POST or None)
+            if form.is_valid():
+                obj = form.save(commit = False)
+                p.qual = obj.qu
+                p.field = obj.fi
+                p.save()
+            context = {'form':form}
+            return render(request,'profiledet/Profile.html',context)
+        else :
+            context = {'type':p}
+            return render(request,'profiledet/Final.html',context)

@@ -11,5 +11,9 @@ class USERMODEL(models.Model):
     phno = models.CharField(max_length = 10,null=True)
     dob  = models.DateField(max_length = 8,null=True)
     bg = models.CharField(max_length = 5,choices = BG,default = 'o+',null=True)
-    qual = models.CharField(max_length = 255,blank=True,null = True)
+    qual = models.CharField(max_length = 255,blank=True,null=True)
     field = models.CharField(max_length = 255,blank= True,null = True)
+
+class Extra(models.Model):
+    qu = models.CharField(max_length = 255,null = True)
+    fi = models.CharField(max_length = 255,null = True)
