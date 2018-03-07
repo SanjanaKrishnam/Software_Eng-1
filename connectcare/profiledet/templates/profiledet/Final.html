@@ -1,1 +1,14 @@
-<title> Edit Profile </title>
+<title> Profile Page </title>
+
+<head> User : {{ type.aname}} </head>
+<block>
+</br>
+Type of user  : {{ type.type }} </br>
+Phone Number  : {{ type.phno }} </br>
+Date of Birth : {{ type.dob  }} </br>
+Blood Group   : {{ type.bg  }} </br>
+{% if type.type is  'Public' %}
+Qualification : {{type.qual}}  </br>
+field         : {{type.field}} </br
+{% endif %}
+</block>

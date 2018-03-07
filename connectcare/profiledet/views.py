@@ -27,5 +27,6 @@ def showform(request):
         context = {'form':form}
         return render(request,'profiledet/Profile.html',context)
     else:
+        p = USERMODEL.objects.get(name = request.user.username)
         context = {'type':p}
         return render(request,'profiledet/Final.html',context)
