@@ -13,7 +13,7 @@ def home(request):
         return HttpResponseRedirect("/home")
     k = USERMODEL.objects.get(name = request.user.username)
     if k.type == 'Patient':
-        documents = Document.objects.filter(user = request.user.username)
+        documents = Document.objects.filter(user = request.user.username, location = 'Med_HIST')
         return render(request, 'uploads/home.html', { 'documents': documents })
     else:
         return HttpResponseRedirect("/home")
@@ -35,6 +35,7 @@ def upl(request):
             a.document.name = filename
             a.user = request.user.username
             a.description = filename
+            a.location = 'Med_HIST'
             a.save()
             return render(request, 'uploads/simple_upload.html', {
             'uploaded_file_url': uploaded_file_url,'name':filename
