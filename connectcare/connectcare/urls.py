@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^profile/',include('profiledet.urls')),
     url(r'^view/$',views.home),
     url(r'^view/uploads/$',views.upl),
-    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout,{'template_name': '../templates/registration/logout.html'}, name='logout'),
              ]
 
