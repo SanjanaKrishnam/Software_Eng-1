@@ -15,6 +15,10 @@ def main(request):
     if k.type == 'Public':
         return render(request,'home/Gen.html')
     if k.type =='Patient':
+        if request.method == 'GET':
+            sq = request.GET.get('search_box')
+            if sq !=None and sq.strip() :
+                return render(request,'home/rend.html',{'query':sq})
         return render(request,'home/PAt.html')
     if k.type == 'Doctor':
         return render(request,'home/Doc.html')
