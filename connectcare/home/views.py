@@ -18,8 +18,14 @@ def main(request):
         if request.method == 'GET':
             sq = request.GET.get('search_box')
             if sq !=None and sq.strip() :
-                
-                return render(request,'home/rend.html',{'query':sq})
+                z = USERMODEL.objects.filter(name = sq,type = "Doctor")
+                f = USERMODEL.objects.filter(aname = sq,type = "Doctor")
+                g = USERMODEL.objects.filter(phno = sq, type = "Doctor")
+                n = USERMODEL.objects.filter(qual = sq, type = "Doctor")
+                p = USERMODEL.objects.filter(aname = sq, type = "Doctor")
+                j = USERMODEL.objects.filter(field = sq, type = "Doctor")
+                p = z|f|g|n|p|j
+                return render(request,'home/rend.html',{'query':p,'name':sq})
         return render(request,'home/PAt.html')
     if k.type == 'Doctor':
         return render(request,'home/Doc.html')

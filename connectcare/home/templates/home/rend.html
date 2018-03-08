@@ -1,3 +1,15 @@
-<Title> Search results for {{ query }} </title>
+<title> Search results </title>
 
+<head>Search results for {{name}} </head>
+</br>
+<ul>
+{% for obj in query%}
+<li>
+  Doctor Name : {{obj.aname}} </br>
+  Phone Number : {{obj.phno}} </br>
+  Qualifications : {{obj.qual}} </br>
+  Field : {{obj.field}} </br>
+</li>
+{% endfor %}
+</ul>
 <a href = "/home"> Click to return </a>
