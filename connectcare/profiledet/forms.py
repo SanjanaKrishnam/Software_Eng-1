@@ -7,8 +7,8 @@ from django.forms.widgets import DateInput
 class UserTypeForm(forms.ModelForm):
     class Meta:
         model = USERMODEL
-        labels = {'aname':'Name','type':'Account Type','phno':'Mobile Number','dob':'Date of Birth','bg':'Blood Group'}
-        fields = ['aname','type','phno','dob','bg']
+        labels = {'aname':'Name','type':'Account Type','phno':'Mobile Number','dob':'Date of Birth','bg':'Blood Group','sex':'Sex:'}
+        fields = ['aname','type','phno','dob','bg','sex']
         widgets={
         'dob': DateInput(attrs={'type':'date'})
         }
