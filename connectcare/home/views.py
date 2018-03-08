@@ -18,6 +18,7 @@ def main(request):
         if request.method == 'GET':
             sq = request.GET.get('search_box')
             if sq !=None and sq.strip() :
+                
                 return render(request,'home/rend.html',{'query':sq})
         return render(request,'home/PAt.html')
     if k.type == 'Doctor':
