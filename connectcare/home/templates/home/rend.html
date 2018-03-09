@@ -6,9 +6,12 @@
 {% for obj in query%}
 <li>
   Doctor Name : {{obj.aname}} </br>
-  Phone Number : {{obj.phno}} </br>
-  Qualifications : {{obj.qual}} </br>
-  Field : {{obj.field}} </br>
+</br>
+<form  type = "get" action = "docprof">
+  <input  id="docpr" type="hidden" name="docpr"  value = {{obj.aname}} >
+  <button  type="submit">View Profile</button>
+</a>
+</form>
 </li>
 {% endfor %}
 </ul>
