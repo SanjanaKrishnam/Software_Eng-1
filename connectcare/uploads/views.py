@@ -6,6 +6,7 @@ from profiledet.models import USERMODEL
 from .models import Document
 from .forms import DocumentForm
 from django.http import HttpResponseRedirect
+import json
 @login_required()
 def home(request):
     p = USERMODEL.objects.filter(name = request.user.username)
@@ -15,6 +16,17 @@ def home(request):
     if k.type == 'Patient':
         documents = Document.objects.filter(user = request.user.username, location = 'Med_HIST')
         return render(request, 'uploads/home.html', { 'documents': documents })
+    elif k.type =='Doctor':
+        jd = json.decoder.JSONDecoder()
+        if k.auth == None:
+            k.auth = json.dumps([])
+            k.save()
+        liste = jd.decode(k.auth)
+        L = []
+        for obj in liste:
+            k = Document.objects.filter(user = obj, location = 'Med_HIST')
+            L.append(k)
+        return render(request,'uploads/docview.html',{'documents':L})
     else:
         return HttpResponseRedirect("/home")
 
