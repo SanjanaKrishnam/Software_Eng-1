@@ -8,6 +8,25 @@ from profiledet.models import USERMODEL
 import json
 
 
+
+
+
+@login_required()
+def pat(request):
+    p = USERMODEL.objects.get(name = request.user.username)
+    if p.type != 'Doctor':
+        return HttpResponseRedirect('/home')
+    if p.auth is None:
+        p.auth = json.dumps([])
+        p.save()
+    jd = json.decoder.JSONDecoder()
+    k = jd.decode(p.auth)
+    l = []
+    for obj in k:
+        z = USERMODEL.objects.get(aname = obj)
+        l.append(z)
+    return render(request,'home/patres.html',{'name':p.aname,'stuff':l})
+
 @login_required()
 def auth(request):
     p = USERMODEL.objects.get(name = request.user.username)
@@ -16,12 +35,10 @@ def auth(request):
     if request.method == 'GET':
         sq = request.GET.get('docauth')
         sq = USERMODEL.objects.get(aname = sq)
-        if p.auth is None:
-            p.auth = json.dumps([sq.aname])
-            p.save()
+        if p.auth is None :
+            return render(request,'home/auth.html',{'type':sq})
         if sq.auth is None:
-            sq.auth = json.dumps([p.aname])
-            sq.save()
+            return render(request,'home/auth.html',{'type':sq})
         jd = json.decoder.JSONDecoder()
         k = jd.decode(sq.auth)
         if p.aname not in k:
