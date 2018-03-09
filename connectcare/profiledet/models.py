@@ -14,6 +14,10 @@ class USERMODEL(models.Model):
     qual = models.CharField(max_length = 255,blank=True,null=True)
     field = models.CharField(max_length = 255,blank= True,null = True)
     sex = models.CharField(max_length = 10,choices = Gend,default = 'M',null=True)
+    auth = models.TextField(null=True)
+
+
+
 class Extra(models.Model):
     qu = models.CharField(max_length = 255,null = True)
     fi = models.CharField(max_length = 255,null = True)

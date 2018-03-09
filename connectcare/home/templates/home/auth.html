@@ -1,4 +1,7 @@
 <title>Doctor Profile</title>
+
+
+<b>Authorised Doctor</b></br>
 <head> Name : {{ type.aname}} </head>
 <block>
 </br>
@@ -9,9 +12,7 @@ Phone Number          : {{ type.phno }} </br>
 Qualification         : {{type.qual}}  </br>
 Field  of Expertise   : {{type.field}} </br>
 
-<form  type = "get" action = "auth">
-  <input  id="docpr" type="hidden" name="docauth"  value = {{type.aname}} >
-  <button  type="submit">Authorize Doctor</button>
+
 </a>
 </br>
 <a href = "/home">Return to home</a>

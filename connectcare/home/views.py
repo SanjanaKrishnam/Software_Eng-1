@@ -5,13 +5,44 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from profiledet.models import USERMODEL
+import json
+
+
+@login_required()
+def auth(request):
+    p = USERMODEL.objects.get(name = request.user.username)
+    if p.type != 'Patient':
+        return HttpResponseRedirect('/home')
+    if request.method == 'GET':
+        sq = request.GET.get('docauth')
+        sq = USERMODEL.objects.get(aname = sq)
+        if p.auth is None:
+            p.auth = json.dumps([sq.aname])
+            p.save()
+        if sq.auth is None:
+            sq.auth = json.dumps([p.aname])
+            sq.save()
+        jd = json.decoder.JSONDecoder()
+        k = jd.decode(sq.auth)
+        if p.aname not in k:
+            k.append(p.aname)
+            sq.auth = json.dumps(k)
+            sq.save()
+            jd = json.decoder.JSONDecoder()
+            k = jd.decode(p.auth)
+            k.append(sq.aname)
+            p.auth = json.dumps(k)
+            p.save()
+        return render(request,'home/auth.html',{'type':sq})
+
 
 @login_required()
 def doc(request):
+    p = USERMODEL.objects.get(name = request.user.username)
+    if p.type != 'Patient':
+        return HttpResponseRedirect('/home')
+
     if request.method == 'GET':
-        p = USERMODEL.objects.get(name = request.user.username)
-        if p.type != 'Patient':
-            return HttpResponseRedirect('/home')
         sq = request.GET.get('docpr')
         if sq == None:
             return HttpResponseRedirect('/home')
@@ -19,7 +50,32 @@ def doc(request):
         if not j:
             return HttpResponseRedirect('/home')
         sq = USERMODEL.objects.get(aname = sq)
+        if p.auth is None or sq.auth is None:
+            return render(request,'home/docprof.html',{'type':sq})
+        jd = json.decoder.JSONDecoder()
+        k = jd.decode(p.auth)
+        if sq.aname in k:
+            return render(request,'home/auth.html',{'type':sq})
+
+
         return render(request,'home/docprof.html',{'type':sq})
+
+
+@login_required()
+def doct(request):
+    p = USERMODEL.objects.get(name = request.user.username)
+    if p.type != 'Patient':
+        return HttpResponseRedirect('/home')
+    if p.auth is None:
+        p.auth = json.dumps([])
+        p.save()
+    jd = json.decoder.JSONDecoder()
+    k = jd.decode(p.auth)
+    l = []
+    for obj in k:
+        z = USERMODEL.objects.get(aname = obj)
+        l.append(z)
+    return render(request,'home/docres.html',{'name':p.aname,'stuff':l})
 
 @login_required()
 def main(request):
