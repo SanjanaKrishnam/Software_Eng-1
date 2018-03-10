@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^',include('mysite.urls')),
     url(r'^home/',include('home.urls')),
     url(r'^profile/',include('profiledet.urls')),
+    url(r'^test/',include('testres.urls')),
     url(r'^view/$',views.home),
     url(r'^view/uploads/$',views.upl),
     url(r'^$', auth_views.login, name='login'),

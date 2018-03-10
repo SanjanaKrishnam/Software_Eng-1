@@ -23,7 +23,7 @@ def pat(request):
     k = jd.decode(p.auth)
     l = []
     for obj in k:
-        z = USERMODEL.objects.get(aname = obj)
+        z = USERMODEL.objects.get(name = obj)
         l.append(z)
     return render(request,'home/patres.html',{'name':p.aname,'stuff':l})
 
@@ -43,12 +43,12 @@ def auth(request):
             sq.save()
         jd = json.decoder.JSONDecoder()
         k = jd.decode(sq.auth)
-        if p.aname not in k:
-            k.append(p.aname)
+        if p.name not in k:
+            k.append(p.name)
             sq.auth = json.dumps(k)
             sq.save()
             k = jd.decode(p.auth)
-            k.append(sq.aname)
+            k.append(sq.name)
             p.auth = json.dumps(k)
             p.save()
         return render(request,'home/auth.html',{'type':sq})
@@ -72,7 +72,7 @@ def doc(request):
             return render(request,'home/docprof.html',{'type':sq})
         jd = json.decoder.JSONDecoder()
         k = jd.decode(p.auth)
-        if sq.aname in k:
+        if sq.name in k:
             return render(request,'home/auth.html',{'type':sq})
         return render(request,'home/docprof.html',{'type':sq})
 
@@ -89,7 +89,7 @@ def doct(request):
     k = jd.decode(p.auth)
     l = []
     for obj in k:
-        z = USERMODEL.objects.get(aname = obj)
+        z = USERMODEL.objects.get(name = obj)
         l.append(z)
     return render(request,'home/docres.html',{'name':p.aname,'stuff':l})
 
@@ -97,7 +97,7 @@ def doct(request):
 def main(request):
     p = USERMODEL.objects.filter(name = request.user.username)
     if not p:
-        return render(request,'home/Gen.html')
+        return HttpResponseRedirect("/profile")
     k = USERMODEL.objects.get(name = request.user.username)
     if k.type == 'Public':
         return render(request,'home/Gen.html',{'name':k.aname})

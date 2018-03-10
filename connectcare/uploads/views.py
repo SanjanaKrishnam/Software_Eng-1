@@ -24,8 +24,6 @@ def home(request):
         liste = jd.decode(k.auth)
         L = Document.objects.filter(user = liste[0],location = 'Med_HIST')
         for obj in liste:
-            z = USERMODEL.objects.get(aname = obj)
-            obj = z.name
             k = Document.objects.filter(user = obj, location = 'Med_HIST')
             L = L|k
         return render(request,'uploads/docview.html',{'documents':L})
@@ -47,7 +45,7 @@ def upl(request):
             uploaded_file_url = fs.url(filename)
             a = Document()
             a.document.name = filename
-            a.user = request.user.username
+            a.user = k.name
             a.description = filename
             a.location = 'Med_HIST'
             a.save()

@@ -1,0 +1,14 @@
+<title>Authorized Patients</title>
+
+<head> Patients authorized for {{name}}</head>
+</br>
+<ul>
+{% for obj in stuff%}
+<li> Patient name : {{obj.aname}}</br>
+</li>
+<form type="get" action="testup">
+  <input id = "name" type = "hidden" name ="Pat_test_up" value = {{obj.name}}>
+  <button id="search_submit" type="submit" >Upload</button>
+</form>
+{% endfor %}
+</ul>
