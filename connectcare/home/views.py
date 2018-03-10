@@ -36,16 +36,17 @@ def auth(request):
         sq = request.GET.get('docauth')
         sq = USERMODEL.objects.get(aname = sq)
         if p.auth is None :
-            return render(request,'home/auth.html',{'type':sq})
+            p.auth = json.dumps([])
+            p.save()
         if sq.auth is None:
-            return render(request,'home/auth.html',{'type':sq})
+            sq.auth = json.dumps([])
+            sq.save()
         jd = json.decoder.JSONDecoder()
         k = jd.decode(sq.auth)
         if p.aname not in k:
             k.append(p.aname)
             sq.auth = json.dumps(k)
             sq.save()
-            jd = json.decoder.JSONDecoder()
             k = jd.decode(p.auth)
             k.append(sq.aname)
             p.auth = json.dumps(k)
@@ -73,8 +74,6 @@ def doc(request):
         k = jd.decode(p.auth)
         if sq.aname in k:
             return render(request,'home/auth.html',{'type':sq})
-
-
         return render(request,'home/docprof.html',{'type':sq})
 
 
