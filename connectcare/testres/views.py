@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 import json
 
 
-patientname = None
+
 
 @login_required
 def docfin(request):
@@ -25,22 +25,24 @@ def docfin(request):
         j = USERMODEL.objects.filter(name = sq)
         if not j:
             return HttpResponseRedirect('/home')
-        global patientname
-        patientname = sq
         j = USERMODEL.objects.get(name = sq)
-        return render(request,'testres/DoctorUploadMain.html',{'name':j.aname})
+        return render(request,'testres/DoctorUploadMain.html',{'names':j.aname})
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
+        k = request.POST.get('patientname')
+        l = USERMODEL.objects.get(aname = k)
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
         a = Testres()
         a.document.name = filename
         a.user = p.name
+        a.patient = l.name
+        a.doctor = p.aname
         a.description = filename
         a.location = 'TestRes'
         a.save()
-        return render(request, 'testres/DoctorUploadMain.html', {
+        return render(request, 'testres/DoctorUploadMain.html', {'names':k,
         'uploaded_file_url': uploaded_file_url,'name':filename
         })
 
@@ -61,7 +63,7 @@ def testup(request):
         if not j:
             return HttpResponseRedirect('/home')
         j = USERMODEL.objects.get(name = sq)
-        k = Testres.objects.filter(user = p.name)
+        k = Testres.objects.filter(user = p.name, patient = j.name)
         return render(request,'testres/DoctorUploadHome.html',{'name':j.aname,'user':j.name,'documents':k})
 
 @login_required
@@ -73,7 +75,8 @@ def main(request):
     if p.type=='Public':
         return HttpResponseRedirect("/home")
     if p.type == 'Patient':
-        return render(request,"testres/pat.html")
+        k = Testres.objects.filter(patient = p.name)
+        return render(request,"testres/pat.html",{'documents':k})
     else:
         jd = json.decoder.JSONDecoder()
         if p.auth is None:

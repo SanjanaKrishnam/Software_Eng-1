@@ -1,0 +1,14 @@
+<Title>Test Results</Title>
+
+<p>Uploaded files:</p>
+<ul>
+  {% for obj in documents %}
+    <li>
+      <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+      <small>(Uploaded at: {{ obj.uploaded_at }})
+</br> <b> Doctor : {{ obj.doctor }} </b>
+      </small>
+    </li>
+  {% endfor %}
+</ul>
+<a href = "/home"></br>Return</a>
