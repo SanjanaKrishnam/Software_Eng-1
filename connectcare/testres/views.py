@@ -8,6 +8,43 @@ from django.http import HttpResponseRedirect
 import json
 
 
+patientname = None
+
+@login_required
+def docfin(request):
+    p = USERMODEL.objects.filter(name = request.user.username)
+    if not p:
+        return HttpResponseRedirect("/home")
+    p = USERMODEL.objects.get(name= request.user.username)
+    if p.type!='Doctor':
+        return HttpResponseRedirect("/home")
+    if request.method =='GET':
+        sq = request.GET.get('uploadtest')
+        if sq == None:
+            return HttpResponseRedirect('/home')
+        j = USERMODEL.objects.filter(name = sq)
+        if not j:
+            return HttpResponseRedirect('/home')
+        global patientname
+        patientname = sq
+        j = USERMODEL.objects.get(name = sq)
+        return render(request,'testres/DoctorUploadMain.html',{'name':j.aname})
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        a = Testres()
+        a.document.name = filename
+        a.user = p.name
+        a.description = filename
+        a.location = 'TestRes'
+        a.save()
+        return render(request, 'testres/DoctorUploadMain.html', {
+        'uploaded_file_url': uploaded_file_url,'name':filename
+        })
+
+
 @login_required
 def testup(request):
     p = USERMODEL.objects.filter(name = request.user.username)
@@ -24,7 +61,8 @@ def testup(request):
         if not j:
             return HttpResponseRedirect('/home')
         j = USERMODEL.objects.get(name = sq)
-        return 
+        k = Testres.objects.filter(user = p.name)
+        return render(request,'testres/DoctorUploadHome.html',{'name':j.aname,'user':j.name,'documents':k})
 
 @login_required
 def main(request):
@@ -44,6 +82,6 @@ def main(request):
         k = jd.decode(p.auth)
         l = []
         for obj in k:
-            z = USERMODEL.objects.get(aname = obj)
+            z = USERMODEL.objects.get(name = obj)
             l.append(z)
         return render(request,'testres/doc.html',{'name':p.aname,'stuff':l})

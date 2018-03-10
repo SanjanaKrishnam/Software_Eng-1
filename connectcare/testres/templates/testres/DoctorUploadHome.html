@@ -1,0 +1,23 @@
+<title>View Documents</title>
+
+
+<head> <b>Upload files for {{name}}</b> </head></br>
+{% block content %}
+<form type="get" action="uploadtest">
+  <input id = "name" type = "hidden" name ="uploadtest" value = {{user}}>
+</br>
+  <button id="search_submit" type="submit" >Upload Test Result</button>
+
+</form>
+
+  <p>Uploaded files:</p>
+  <ul>
+    {% for obj in documents %}
+      <li>
+        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href = "/home"></br>Return</a>
+{% endblock %}
