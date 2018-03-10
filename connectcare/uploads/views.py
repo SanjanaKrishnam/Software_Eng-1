@@ -22,10 +22,12 @@ def home(request):
             k.auth = json.dumps([])
             k.save()
         liste = jd.decode(k.auth)
-        L = []
+        L = Document.objects.filter(user = liste[0],location = 'Med_HIST')
         for obj in liste:
+            z = USERMODEL.objects.get(aname = obj)
+            obj = z.name
             k = Document.objects.filter(user = obj, location = 'Med_HIST')
-            L.append(k)
+            L = L|k
         return render(request,'uploads/docview.html',{'documents':L})
     else:
         return HttpResponseRedirect("/home")

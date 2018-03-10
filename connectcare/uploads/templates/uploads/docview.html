@@ -9,7 +9,8 @@
     {% for obj in documents %}
       <li>
         <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
-        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+        <small>(Uploaded on: {{ obj.uploaded_at }})</br>
+        <b>{{obj.user}}</b></small>
       </li>
     {% endfor %}
   </ul>
