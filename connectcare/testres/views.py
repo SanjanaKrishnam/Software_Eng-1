@@ -77,7 +77,7 @@ def main(request):
     if p.type == 'Patient':
         k = Testres.objects.filter(patient = p.name)
         return render(request,"testres/pat.html",{'documents':k})
-    else:
+    if p.type == 'Doctor':
         jd = json.decoder.JSONDecoder()
         if p.auth is None:
             p.auth = json.dumps([])

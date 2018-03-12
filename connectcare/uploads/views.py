@@ -22,7 +22,10 @@ def home(request):
             k.auth = json.dumps([])
             k.save()
         liste = jd.decode(k.auth)
-        L = Document.objects.filter(user = liste[0],location = 'Med_HIST')
+        if liste :
+            L = Document.objects.filter(user = liste[0],location = 'Med_HIST')
+        else :
+            L = []
         for obj in liste:
             k = Document.objects.filter(user = obj, location = 'Med_HIST')
             L = L|k
