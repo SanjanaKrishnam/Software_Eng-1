@@ -1,6 +1,5 @@
-
-<!DOCTYPE html>
 {% load staticfiles %}
+<!DOCTYPE html>
 {% block content %}
 {% if user.is_authenticated %}
   <meta http-equiv="refresh" content="0;url = /home" />
@@ -24,7 +23,7 @@
 	    <br>
 	    <input type="button" onclick="location.href='/register';" value="Register"/>
 
-           
+
         </form>
 
 	</div>

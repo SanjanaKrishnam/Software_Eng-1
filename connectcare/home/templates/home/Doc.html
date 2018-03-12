@@ -1,15 +1,14 @@
-{% extends 'Navbar.html' %}
-<title>ConnectCare</title>
+{% extends 'home/Navbar.html' %}
+
 {% block content %}
+<title>ConnectCare</title>
+
   <head> Welcome <b>{{ name }}</b> </head>
   <a href = "/view"> </br>View Patient Files</a>
-
-  <a href = "/profile"></br>View User Profile</a>
   <a href = "pat"></br>View Patients</br>
   <a href = "/test"></br>Upload Test Results</br></a>
   <a href = "/forum">View Forum</a>
   <body>
   </br>
-    <a href="/logout"> </br>Click To logout</a>
   </body>
 {% endblock %}
