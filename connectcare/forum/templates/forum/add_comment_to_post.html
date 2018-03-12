@@ -1,9 +1,12 @@
 {% extends 'forum/base.html' %}
 
 {% block content %}
-    <h1>New comment</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <input type='submit' value="Submit Answer"/>
-    </form>
-{% endblock %}
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>{{question}}</h1>
+<form method="POST" class="post-form">
+{% csrf_token %}
+{{ form.as_p }}
+<input type='submit' class='btn btn-primary' value='Comment' />
+</form>
+</div>
+{% endblock content %}

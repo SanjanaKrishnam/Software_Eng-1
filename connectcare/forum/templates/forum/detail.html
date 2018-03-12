@@ -1,17 +1,54 @@
-{%extends "forum/base.html"%}
-{%block content%}
-<h1>{{title}}</h1>
-{{instance.content}}<br/>
-{{instance.timestamp}}<br/>
-<a class="btn btn-default" href="{% url 'add_comment_to_post' id=instance.id %}">Add comment</a>
-<hr>
+{% extends "forum/base.html" %}
+
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+
+{% block content %}
+<div class='col-sm-6 col-sm-offset-3'>
+    <h1>
+        {{ instance.title }}
+
+        <br>
+        <small>
+        {{ instance.content|linebreaks }}
+        </small>
+        <small>
+              <small>
+                  <small>
+                      {{instance.timestamp}}
+                  </small>
+             </small>
+         </small>
+    </h1>
+
+<a class="btn btn-primary" href="{% url 'add_comment_to_post' id=instance.id %}">Add comment</a>
+<a class="btn btn-primary" href="{% url 'questions' %}">Forum</a>
+<br>
+<br>
 {% for comment in instance.comments.all %}
     <div class="comment">
-        <div class="date">{{ comment.created_date }}</div>
-        <strong>{{ comment.author }}</strong>
-        <p>{{ comment.text|linebreaks }}</p>
+        <div class="col-sm-12">
+            <div class="thumbnail">
+                <div class="caption">
+                    <p>{{ comment.text|linebreaks }}</p>
+                    <small>
+                    <small>
+                        by {{ comment.author }}
+                        <div class="date">{{ comment.created_date }}</div>
+                    </small>
+                    </small>
+                </div>
+            </div>
+        </div>
     </div>
 {% empty %}
-    <p>No comments here yet </p>
+    <p>No comments</p>
 {% endfor %}
 {%endblock content%}
+
+</div>
+
+
+
+

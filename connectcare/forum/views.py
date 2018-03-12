@@ -14,6 +14,7 @@ def question_create(request):
        if form.is_valid():
            instance = form.save(commit=False)
            instance.save()
+           return redirect('questions')
        return render(request, 'forum/create.html', {"form":form})
 
 
@@ -35,7 +36,7 @@ def question_list(request):
             queryset = paginator.page(1)
         except EmptyPage:
             queryset = paginator.page(paginator.num_pages)
-        return render(request, 'forum/base.html', {"object_list":queryset,"title":"List","page_request_var":page_request_var})
+        return render(request, 'forum/index.html', {"object_list":queryset,"title":"Question and Answer Forum","page_request_var":page_request_var})
 
 @login_required()
 def question_detail(request,id=None):
@@ -54,4 +55,4 @@ def add_comment_to_post(request, id):
             return redirect('detail', id=question.id)
     else:
         form = CommentForm()
-    return render(request, 'forum/add_comment_to_post.html', {'form': form})
+    return render(request, 'forum/add_comment_to_post.html',{"question" : question ,'form': form})
