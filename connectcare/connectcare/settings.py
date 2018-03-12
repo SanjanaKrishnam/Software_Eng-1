@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'uploads',
     'profiledet',
     'testres',
+    'forum'
 ]
 
 

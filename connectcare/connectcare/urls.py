@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^view/uploads/$',views.upl),
     url(r'^$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout,{'template_name': '../templates/registration/logout.html'}, name='logout'),
+    url(r'^forum/',include('forum.urls')),
              ]
 
 if settings.DEBUG:
