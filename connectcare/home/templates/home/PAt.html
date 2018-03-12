@@ -1,3 +1,4 @@
+{% extends 'Navbar.html' %}
 <title>ConnectCare</title>
 <form type="get" action="." style="margin: 0">
     <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
@@ -5,12 +6,13 @@
 </form>
 {% block content %}
   <head> Welcome <b>{{ name }}</b> </head>
-  <a href = "/view"> </br>View/Upload files</a>
+  <a href = "/view"> </br>View/Upload Medical Records</a>
 
   <a href = "/profile"></br>View User Profile</a>
 </br>
 <a href = "/home/docts">View Authorized doctors</a>
-<a href = "/test"></br>View Test Results</br>
+<a href = "/test"></br>View Test Results</br></a>
+<a href = "/forum"></br>View Forum</a>
   <body>
     <a href="/logout"> </br>Click To logout</a>
 
