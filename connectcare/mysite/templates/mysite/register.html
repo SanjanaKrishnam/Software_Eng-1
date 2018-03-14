@@ -1,19 +1,24 @@
+{%load staticfiles%}
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>Register</title>
+    <center> Register</center>
 </head>
 <body>
+  <center>
     <form method="POST">
         {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit">Signup</button>
         {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {{ message }}
     {% endfor %}
 </ul>
 {% endif %}
     </form>
+  </center>
 </body>
 </html>
