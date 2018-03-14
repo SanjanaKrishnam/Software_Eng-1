@@ -1,20 +1,56 @@
-{% extends 'Navbar.html' %}
+{% extends 'home/Navbar.html' %}
+
+
+{% block content %}
+
 <title>ConnectCare</title>
+<head>
+  <center>
+<font size = "10" style = "color:white;">Welcome <b>{{ name }}</b></font>
+</head>
+
+
+<br>
+<br>
+<br>
+<br>
 <form type="get" action="." style="margin: 0">
-    <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+    <input  id="search_box" type="text" name="search_box"  placeholder="Search for Doctors..." >
     <button id="search_submit" type="submit" >Submit</button>
 </form>
-{% block content %}
-  <head> Welcome <b>{{ name }}</b> </head>
-  <a href = "/view"> </br>View/Upload Medical Records</a>
 
-  <a href = "/profile"></br>View User Profile</a>
-</br>
-<a href = "/home/docts">View Authorized doctors</a>
-<a href = "/test"></br>View Test Results</br></a>
-<a href = "/forum"></br>View Forum</a>
-  <body>
-    <a href="/logout"> </br>Click To logout</a>
 
-  </body>
+
+<body>
+  <center>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <a href = "/view" class ="button button1"> View/Upload Medical Records</a>
+    <br>
+      <a href = "/profile" class = "button button1">View User Profile</a>
+    <br>
+    <a href = "/home/docts" class = "button button1">View Authorized doctors</a>
+    <br>
+    <a href = "/test" class = "button button1">View Test Results</br></a>
+    <br>
+    <a href = "/forum" class = "button button1">View Forum</a>
+  </center>
+</body>
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
