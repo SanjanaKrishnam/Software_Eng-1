@@ -1,20 +1,25 @@
 {%load staticfiles%}
 <html>
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+body {
+  background-color: #ccc;
+  font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
 
 input[type=text], input[type=password], input[type=email]{
-    width: 40%;
+    width: 23%;
+    font-size: 20;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
     border: none;
     background: white;
     border: none;
+    border-style: groove;
     border-bottom: 2px solid black;
 }
+
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
@@ -42,7 +47,7 @@ button {
     cursor: pointer;
     width: 400px;
     border-radius: 20px;
-    margin-left: 75px;
+    margin-left: 20px;
 }
 
 button:hover {
@@ -61,7 +66,7 @@ button:hover {
 
 </style>
 <body>
-
+<title>Register</title>
 <form method="POST" >
     {% csrf_token %}
     <center>
