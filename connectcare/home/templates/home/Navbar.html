@@ -9,7 +9,6 @@ body {
     background-image:url("{%static "connectcare2.jpg"%}");
     background-size: cover;
 }
-
 .sidenav {
     height: 100%;
     width: 0;
@@ -30,6 +29,7 @@ body {
     color: #818181;
     display: block;
     transition: 0.3s;
+
 }
 
 .sidenav a:hover {
@@ -38,10 +38,15 @@ body {
 
 .sidenav .closebtn {
     position: absolute;
-    top: 0;
+    top:0px;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
 }
 
 @media screen and (max-height: 450px) {
@@ -80,9 +85,9 @@ body {
 h1 {
   color:White;
 }
-
 </style>
 </head>
+
 <body>
 
 <div id="mySidenav" class="sidenav">
@@ -93,20 +98,29 @@ h1 {
   <a href="/logout">Logout</a>
 </div>
 
+<div id="main">
+  {% block content %}
+  {% endblock %}
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div>
+
 
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
 }
 </script>
-{%block content%}
-{%endblock content%}
+
+
 
 </body>
 </html>
+
+
