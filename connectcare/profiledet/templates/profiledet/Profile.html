@@ -1,7 +1,29 @@
-{% load i18n %}
+{%load staticfiles%}
+
+<style>
+
+body {
+    font-family: "Lato", sans-serif;
+    background-image:url("{%static "connectcare2.jpg"%}");
+    background-size: cover;
+}
+
+</style>
 <title> Edit Profile</title>
+
+  <center>
+
+<head> Edit Profile </head>
+
+
+
+<body>
 
 <form action ="" method="post">{% csrf_token %}
   {{form.as_p}}
   <input type = "submit" value="Save Details" />
+
 </form>
+
+</body>
+</center>
