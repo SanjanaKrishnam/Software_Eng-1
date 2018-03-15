@@ -1,11 +1,28 @@
 <title>View Documents</title>
+{%load staticfiles%}
+<style>
+  h1   {font-size: 60px;}
 
-{% block content %}
-      <a href="uploads" >Upload a file</a>
-  
+  body {
+      font-family: "Lato", sans-serif;
+      background-image:url("{%static "medhes.jpg"%}");
+      background-size: cover;
+  }
 
-  <p>Uploaded files:</p>
-  <ul>
+  ul.new {
+      list-style-position: inside;
+      text-align: center;
+      font-size: 30px;
+  }
+</style>
+<center>
+<h1> View/Upload Medical Records</h1>
+</center>
+
+  <ul class = "new">
+
+          <a href="uploads" >Click here to upload new files</a>
+    <p>Uploaded files:</p>
     {% for obj in documents %}
       <li>
         <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
@@ -13,5 +30,3 @@
       </li>
     {% endfor %}
   </ul>
-  <a href = "/home"></br>Return</a>
-{% endblock %}

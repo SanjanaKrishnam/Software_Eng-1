@@ -1,17 +1,59 @@
 <title>Upload Document</title>
-<head> Upload Medical Records</br></head>
 {% load static %}
 
-{% block content %}
+<style>
+  h1   {font-size: 60px;}
+
+  body {
+      font-family: "Lato", sans-serif;
+      background-image:url("{%static "medhes.jpg"%}");
+      background-size: cover;
+  }
+
+  ul.new {
+      list-style-position: inside;
+      text-align: center;
+      font-size: 30px;
+  }
+
+button{
+  font-size: 30px;
+  padding: 12px 28px;
+  border-radius: 12px;
+}
+input{
+
+  font-size: 35px;
+
+
+}
+
+.input{
+
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+.button{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+</style>
+<center>
+<h1> Upload Medical Records</h1>
+</center>
+</br>
+</br>
+<ul class = "new">
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="myfile">
     <button type="submit">Upload</button>
   </form>
-
+</br>
+</br>
   {% if uploaded_file_url %}
     <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ name }}</a></p>
   {% endif %}
-
+</br>
+</br>
   <p><a href="/view">Return</a></p>
-{% endblock %}
+</ul>

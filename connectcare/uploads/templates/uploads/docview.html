@@ -1,11 +1,24 @@
 <title>View Documents</title>
+{%load staticfiles%}
+<style>
+  h1   {font-size: 60px;}
 
-{% block content %}
+  body {
+      font-family: "Lato", sans-serif;
+      background-image:url("{%static "medhes.jpg"%}");
+      background-size: cover;
+  }
 
+  ul.new {
+      list-style-position: inside;
+      text-align: center;
+      font-size: 30px;
+  }
+</style>
 
-
-  <p>Uploaded files:</p>
-  <ul>
+<center>
+  <h1>Uploaded files:</h1>
+  <ul class = "new">
     {% for obj in documents %}
       <li>
         <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
@@ -14,5 +27,4 @@
       </li>
     {% endfor %}
   </ul>
-  <a href = "/home"></br>Return</a>
-{% endblock %}
+</center>
