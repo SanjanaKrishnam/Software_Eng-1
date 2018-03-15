@@ -1,29 +1,66 @@
 {%load staticfiles%}
 
 <style>
-
+h1   {font-size: 60px;}
 body {
     font-family: "Lato", sans-serif;
-    background-image:url("{%static "connectcare2.jpg"%}");
+    background-image:url("{%static "connectcaremajblur.jpg"%}");
     background-size: cover;
 }
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 30px;
+    font-style: sans-serif;
+}
+
+
+input[type=text], input[type=date], input[type = color], option{
+    width: 23%;
+    font-size: 20px;
+    padding: 5px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: white;
+    border: none;
+    opacity : 0.5;
+    font-weight: bold;
+
+}
+
+.container {
+    padding: 50px;
+    font-size: 20px;
+    color: black;
+
+}
+
 
 </style>
 <title> Edit Profile</title>
 
   <center>
 
-<head> Edit Profile </head>
+<head> <h1>Edit Profile</h1> </head>
 
 
 
 <body>
-
+<div class = "container">
 <form action ="" method="post">{% csrf_token %}
   {{form.as_p}}
-  <input type = "submit" value="Save Details" />
+<div class= "k">  <input type = "submit" value="Save Details" /> </div>
 
 </form>
-
+</div>
 </body>
 </center>

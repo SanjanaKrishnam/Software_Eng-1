@@ -1,15 +1,39 @@
 <title> Profile Page </title>
+{%load staticfiles%}
+<style>
+h1   {font-size: 60px;}
+body {
+    font-family: "Lato", sans-serif;
+    background-image:url("{%static "connectcaremajblur.jpg"%}");
+    background-size: cover;
+}
 
-<head> Name : {{ type.aname}} </head>
+.container {
+    padding: 60px;
+    font-size: 30px;
+    color: black;
+
+}
+}
+
+
+</style>
+<center><h1> Profile details </h1></center>
+<center>
+
 <block>
-</br>
+<div class = "container">
+User : {{ type.aname}} </br>
 Username : {{type.name}} </br>
-Type of user          : {{ type.type }} </br>
+Type of user  : {{ type.type }} </br>
 Sex : {{type.sex}} </br>
-Phone Number          : {{ type.phno }} </br>
-Date of Birth         : {{ type.dob  }} </br>
-Blood Group           : {{ type.bg  }} </br>
+Phone Number  : {{ type.phno }} </br>
+Date of Birth : {{ type.dob  }} </br>
+Blood Group   : {{ type.bg  }} </br>
 Qualification         : {{type.qual}}  </br>
 Field  of Expertise   : {{type.field}} </br>
-<a href = "/home">Return to home</a>
+</div>
+</center>
+
+
 </block>
