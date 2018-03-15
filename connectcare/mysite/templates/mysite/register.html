@@ -5,7 +5,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
-
 input[type=text], input[type=password], input[type=email]{
     width: 23%;
     font-size: 20;
@@ -16,6 +15,9 @@ input[type=text], input[type=password], input[type=email]{
     background: white;
     border: none;
     border-bottom: 2px solid black;
+    opacity : 0.5;
+    font-weight: bold;
+
 }
 
 input:-webkit-autofill {
@@ -30,7 +32,7 @@ input[type=text]:focus, input[type=password]:focus {
 hr {
     border: 1px solid black;
     margin-bottom: 50px;
-    width: 75%
+    width: 50%
 }
 
 
@@ -46,31 +48,41 @@ button {
     width: 400px;
     border-radius: 20px;
     margin-left: 20px;
+
 }
 
 button:hover {
     opacity:1;
 }
 
-
-
 .container {
     padding: 50px;
-
-
+    font-size: 20px;
+    color: white;
 
 }
+
+body {
+    font-family: "Lato", sans-serif;
+    background-image:url("{%static "connect_reg.jpg"%}");
+    background-size: cover;
+}
+
+h1   {font-size: 60px;}
+p  {font-weight: bold;}
 
 
 </style>
 <body>
-<title>Register</title>
 <form method="POST" >
     {% csrf_token %}
     <center>
+        <br>
+        <br>
+        <h1>Sign Up</h1>
+    <h2>Please fill in this form to create an account</h2>
     <div class="container">
-    <h1>Sign Up</h1>
-    <p>Please fill in this form to create an account.</p>
+
     <hr>
     {{ form.as_p }}
     <button type="submit">Signup</button>
