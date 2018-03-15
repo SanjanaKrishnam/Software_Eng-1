@@ -1,13 +1,13 @@
 
 {% extends "forum/base.html" %}
 {% block content %}
-
+<center><h1 style="font-size:50px;"><b>{{ title }}</b></h1></center>
 <div class='col-sm-6 col-sm-offset-3'>
-    <h1>{{ title }}</h1>
-    <br>
+<br>
+<br>
 <form method='GET' action=''>
 <input type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
-<input type='submit' value='Search' a class="btn btn-primary"/>
+<input type='submit' value='Search' class="button"/>
 <br>
 <br>
 <a class="btn btn-primary" href="{% url 'create' %}">Add question</a>
@@ -19,8 +19,8 @@
       <div class="caption">
         <h3>{{ obj.title }}</h3>
         <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
-          <p>Comments : {{obj.comments.count}}</p>
-        <p><a href="/forum/{{obj.id}}/" class="btn btn-primary" role="button">View</a></p>
+          <h4>Comments : {{obj.comments.count}}</h4>
+        <p><a href="/forum/{{obj.id}}/" class="button1" role="button">View</a></p>
       </div>
     </div>
   </div>
