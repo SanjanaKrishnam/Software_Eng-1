@@ -6,11 +6,15 @@ from django import forms
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from profiledet.models import USERMODEL
 # Create your views here.
 
 def home(request):
     return render(request, 'mysite/home.html')
 def register(request):
+    p = USERMODEL.objects.filter(name=request.user.username)
+    if p:
+        return HttpResponseRedirect("/home")
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():

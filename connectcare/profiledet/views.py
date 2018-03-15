@@ -14,26 +14,28 @@ from django.views.generic import TemplateView, ListView, CreateView
 def showform(request):
     p = USERMODEL.objects.filter(name = request.user.username)
     if not p:
-    
+
         form = UserTypeForm(request.POST or None)
+        context = {'form':form}
         if form.is_valid():
             obj = form.save(commit=False)
             obj.name = request.user.username
             request.user.usertype = obj.type
             obj.save()
-        context = {'form':form}
+            return HttpResponseRedirect("/profile")
         return render(request,'profiledet/Profile.html',context)
 
     else:
         p = USERMODEL.objects.get(name = request.user.username)
         if p.type == 'Doctor' and p.qual is None :
             form = ExtraForm(request.POST or None)
+            context = {'form':form}
             if form.is_valid():
                 obj = form.save(commit = False)
                 p.qual = obj.qu
                 p.field = obj.fi
                 p.save()
-            context = {'form':form}
+                return HttpResponseRedirect("/profile")
             return render(request,'profiledet/Profile.html',context)
         else :
             context = {'type':p}

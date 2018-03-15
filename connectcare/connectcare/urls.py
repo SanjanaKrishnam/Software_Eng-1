@@ -7,6 +7,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from uploads import views
 
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^',include('mysite.urls')),
