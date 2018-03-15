@@ -5,7 +5,7 @@ from .models import Question
 from django.db.models import Q
 from .forms import QuestionForm,CommentForm
 from django.shortcuts import redirect
-
+from profiledet.models import USERMODEL
 
 # Create your views here.
 @login_required()
@@ -50,6 +50,8 @@ def add_comment_to_post(request, id):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            p = USERMODEL.objects.get(name = request.user.username)
+            comment.author = p.aname
             comment.question = question
             comment.save()
             return redirect('detail', id=question.id)
