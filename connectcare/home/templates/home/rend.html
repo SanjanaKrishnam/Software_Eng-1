@@ -1,8 +1,41 @@
 <title> Search results </title>
 
-<head>Search results for {{name}} </head>
+{%load staticfiles%}
+<style>
+h1   {font-size: 60px;}
+body {
+    font-family: "Lato", sans-serif;
+    background-image:url("{%static "connectcaremajblur.jpg"%}");
+    background-size: cover;
+}
+
+
+ul.new {
+    list-style-position: inside;
+    text-align: center;
+    font-size: 30px;
+}
+button {
+   background-color: black;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    width: 200px;
+    border-radius: 20px;
+    margin-left: 20px;
+
+}
+
+
+</style>
+
+<center><h1>Search results for {{name}} </h1></center>
 </br>
-<ul>
+<ul class = "new">
 {% for obj in query%}
 <li>
   Doctor Name : {{obj.aname}} </br>
@@ -14,5 +47,5 @@
 </form>
 </li>
 {% endfor %}
+
 </ul>
-<a href = "/home"> Click to return </a>
