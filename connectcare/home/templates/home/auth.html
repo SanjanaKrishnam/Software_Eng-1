@@ -1,21 +1,15 @@
-
+{% extends 'home/Navbar2.html' %}
+{% block content %}
 <title>Doctor Profile</title>
-
-
-{%load staticfiles%}
 <style>
-h1   {font-size: 60px;}
-body {
-    font-family: "Lato", sans-serif;
-    background-image:url("{%static "connectcaremajblur.jpg"%}");
-    background-size: cover;
-}
-
+h1   {font-size: 60px;
+        color: black}
 
 ul.new {
     list-style-position: inside;
     text-align: center;
     font-size: 30px;
+    color:black;
 }
 button {
    background-color: black;
@@ -52,3 +46,4 @@ Field  of Expertise   : {{type.field}} </br>
 
 </block>
 </center>
+{%endblock%}
