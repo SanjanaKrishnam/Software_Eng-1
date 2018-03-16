@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class='col-sm-6 col-sm-offset-3'>
-<h1>{{question}}</h1>
+<h1>{{question.content}}</h1>
 <form method="POST" class="post-form">
 {% csrf_token %}
 {{ form.as_p }}
