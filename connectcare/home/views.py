@@ -34,7 +34,7 @@ def auth(request):
         return HttpResponseRedirect('/home')
     if request.method == 'GET':
         sq = request.GET.get('docauth')
-        sq = USERMODEL.objects.get(aname = sq)
+        sq = USERMODEL.objects.get(name = sq)
         if p.auth is None :
             p.auth = json.dumps([])
             p.save()
@@ -64,10 +64,11 @@ def doc(request):
         sq = request.GET.get('docpr')
         if sq == None:
             return HttpResponseRedirect('/home')
-        j = USERMODEL.objects.filter(aname = sq)
+        j = USERMODEL.objects.filter(name = sq)
         if not j:
             return HttpResponseRedirect('/home')
-        sq = USERMODEL.objects.get(aname = sq)
+        l = USERMODEL.objects.get(name = sq)
+        sq = l
         if p.auth is None or sq.auth is None:
             return render(request,'home/docprof.html',{'type':sq})
         jd = json.decoder.JSONDecoder()

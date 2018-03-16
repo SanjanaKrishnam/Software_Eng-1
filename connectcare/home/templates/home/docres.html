@@ -9,8 +9,9 @@
 {% for obj in stuff%}
 <li> Doctor name : {{obj.aname}}</br>
 <form  type = "get" action = "docprof">
-  <input  id="docpr" type="hidden" name="docpr"  value = {{obj.aname}} >
+  <input  id="docpr" type="hidden" name="docpr"  value = {{obj.name}} >
   <button  type="submit">View Profile</button>
+</form>
 </li>
 
 {% endfor %}
