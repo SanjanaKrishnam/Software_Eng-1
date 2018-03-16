@@ -8,7 +8,7 @@
   <ul class = "new">
 
           <a href = "uploads" class = "button">Click here to upload new files</a>
-    <p>Uploaded files:</p>
+    <p style = " color:black;">Uploaded files:</p>
     {% for obj in documents %}
       <li>
         <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>

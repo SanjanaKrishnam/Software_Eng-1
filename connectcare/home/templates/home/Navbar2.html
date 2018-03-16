@@ -92,7 +92,7 @@ ul.new {
     font-size: 30px;
     color:white;
 }
-li{color:white;}
+li{color:black;}
 
   ul.new {
       list-style-position: inside;
@@ -116,13 +116,13 @@ button {
 }
 
 h2 {
-  color:White;
+  color:black;
   font-size:40px;
 }
 
 h1{
     font-size: 60px;
-    color:White;
+    color:black;
 }
 
 </style>
@@ -133,7 +133,7 @@ h1{
 <span style="font-size:45px;cursor:pointer" onclick="openNav()">&#9776;</span>
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <h2><center>ConnectCare</center></h2>
+  <h2 style = "color :white;"><center>ConnectCare</center></h2>
   <a href="/home">Home</a>
   <a href="/profile">View Profile</a>
   <a href="/logout">Logout</a>
@@ -142,7 +142,7 @@ h1{
 <div id="main">
   {% block content %}
   {% endblock %}
-  
+
 </div>
 
 
@@ -160,5 +160,3 @@ function closeNav() {
 
 </body>
 </html>
-
-
