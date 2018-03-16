@@ -1,42 +1,8 @@
+{% extends 'home/Navbar2.html' %}
+{%block content%}
+
 <title>Upload Document</title>
-{% load static %}
 
-<style>
-  h1   {font-size: 60px;}
-
-  body {
-      font-family: "Lato", sans-serif;
-      background-image:url("{%static "medhes.jpg"%}");
-      background-size: cover;
-  }
-
-  ul.new {
-      list-style-position: inside;
-      text-align: center;
-      font-size: 30px;
-  }
-
-button{
-  font-size: 30px;
-  padding: 12px 28px;
-  border-radius: 12px;
-}
-input{
-
-  font-size: 35px;
-
-
-}
-
-.input{
-
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-}
-.button{
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-</style>
 <center>
 <h1> Upload Medical Records</h1>
 </center>
@@ -55,5 +21,6 @@ input{
   {% endif %}
 </br>
 </br>
-  <p><a href="/view">Return</a></p>
+  <p><a href = "/view" class = "button1">Return</a></p>
 </ul>
+{%endblock%}

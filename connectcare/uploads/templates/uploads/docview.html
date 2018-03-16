@@ -1,20 +1,6 @@
+{% extends 'home/Navbar2.html' %}
+{%block content%}
 <title>View Documents</title>
-{%load staticfiles%}
-<style>
-  h1   {font-size: 60px;}
-
-  body {
-      font-family: "Lato", sans-serif;
-      background-image:url("{%static "medhes.jpg"%}");
-      background-size: cover;
-  }
-
-  ul.new {
-      list-style-position: inside;
-      text-align: center;
-      font-size: 30px;
-  }
-</style>
 
 <center>
   <h1>Uploaded files:</h1>
@@ -28,3 +14,4 @@
     {% endfor %}
   </ul>
 </center>
+{%endblock%}

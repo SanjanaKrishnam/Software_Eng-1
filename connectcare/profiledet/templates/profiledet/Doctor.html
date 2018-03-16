@@ -1,27 +1,13 @@
-<title> Profile Page </title>
-{%load staticfiles%}
-<style>
-h1   {font-size: 60px;}
-body {
-    font-family: "Lato", sans-serif;
-    background-image:url("{%static "connectcaremajblur.jpg"%}");
-    background-size: cover;
-}
+{% extends 'profiledet/navigation.html' %}
 
-.container {
-    padding: 60px;
-    font-size: 30px;
-    color: black;
+{%block content%}
 
-}
-}
-
-
-</style>
 <center><h1> Profile details </h1></center>
+<b>
 <center>
 
 <block>
+
 <div class = "container">
 User : {{ type.aname}} </br>
 Username : {{type.name}} </br>
@@ -34,6 +20,6 @@ Qualification         : {{type.qual}}  </br>
 Field  of Expertise   : {{type.field}} </br>
 </div>
 </center>
-
-
+</b>
 </block>
+{%endblock%}

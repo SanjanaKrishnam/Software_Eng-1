@@ -1,7 +1,8 @@
 {%load staticfiles%}
 
 <style>
-h1   {font-size: 60px;}
+h1   {font-size: 60px;
+  color:white;}
 body {
     font-family: "Lato", sans-serif;
     background-image:url("{%static "connectcaremajblur.jpg"%}");
@@ -13,11 +14,12 @@ input:-webkit-autofill {
 }
 input[type=submit] {
     padding:5px 15px;
-    background:#ccc;
-    border:0 none;
+    background:white;
+    border:none;
+    color:black;
     cursor:pointer;
     -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 30px;
     font-style: sans-serif;
 }
@@ -34,15 +36,18 @@ input[type=text], input[type=date], input[type = color], option{
     border: none;
     opacity : 0.5;
     font-weight: bold;
+    color=white;
 
 }
 
 .container {
     padding: 50px;
     font-size: 20px;
-    color: black;
+    color: white;
+    font-weight: bold;
 
 }
+
 
 
 </style>
@@ -50,14 +55,12 @@ input[type=text], input[type=date], input[type = color], option{
 
   <center>
 
-<head> <h1>Edit Profile</h1> </head>
-
-
-
-<body>
+<h1>Edit Profile</h1>
+    <body>
 <div class = "container">
 <form action ="" method="post">{% csrf_token %}
   {{form.as_p}}
+  <br>
 <div class= "k">  <input type = "submit" value="Save Details" /> </div>
 
 </form>

@@ -1,34 +1,5 @@
-<title>Authorized Patients</title>
-{%load staticfiles%}
-<style>
-h1   {font-size: 60px;}
-body {
-    font-family: "Lato", sans-serif;
-    background-image:url("{%static "connectcaremajblur.jpg"%}");
-    background-size: cover;
-}
-
-
-ul.new {
-    list-style-position: inside;
-    text-align: center;
-    font-size: 30px;
-}
-button {
-   background-color: black;
-    color: white;
-    padding: 8px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    cursor: pointer;
-    width: 300px;
-    border-radius: 20px;
-    margin-left: 20px;
-
-}
-</style>
+{% extends 'home/Navbar2.html' %}
+{%block content%}
 <center>
 <h1> Patients authorized for {{name}}</h1>
 </br>
@@ -41,3 +12,4 @@ button {
 </ul>
 
 </center>
+{%endblock%}

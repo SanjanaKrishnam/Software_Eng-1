@@ -1,23 +1,9 @@
+{% extends 'profiledet/navigation.html' %}
+{%block content%}
 <title> Profile Page </title>
-{%load staticfiles%}
-<style>
-h1   {font-size: 60px;}
-body {
-    font-family: "Lato", sans-serif;
-    background-image:url("{%static "connectcaremajblur.jpg"%}");
-    background-size: cover;
-}
-
-.container {
-    padding: 60px;
-    font-size: 30px;
-    color: black;
-
-}
-}
-
 
 </style>
+<b>
 <center><h1> Profile details </h1></center>
 <center>
 
@@ -35,3 +21,5 @@ Blood Group   : {{ type.bg  }} </br>
 
 
 </block>
+</b>
+{%endblock%}
