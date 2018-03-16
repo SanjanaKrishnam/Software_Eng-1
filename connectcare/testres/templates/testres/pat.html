@@ -1,8 +1,9 @@
-
+{% extends 'home/Navbar2.html' %}
+{%block content%}
 <Title>Test Results</Title>
-
-<p>Uploaded files:</p>
-<ul>
+<center>
+<h1>Uploaded files:</h1>
+<ul class = "new">
   {% for obj in documents %}
     <li>
       <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
@@ -12,4 +13,6 @@
     </li>
   {% endfor %}
 </ul>
-<a href = "/home"></br>Return</a>
+<a style = "font-size:30px" href = "/home"></br>Return</a>
+</center>
+{%endblock%}
