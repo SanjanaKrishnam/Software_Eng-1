@@ -8,8 +8,8 @@ from django.utils.translation import ugettext as _
 
 
 class Dialog(TimeStampedModel):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("Dialog owner"), related_name="selfDialogs",on_delete=models.DO_NOTHING)
-    opponent = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("Dialog opponent"),on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("Dialog owner"), related_name="selfDialogs",on_delete=models.CASCADE)
+    opponent = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("Dialog opponent"),on_delete=models.CASCADE)
 
 
     def __str__(self):
@@ -17,8 +17,8 @@ class Dialog(TimeStampedModel):
 
 
 class Message(TimeStampedModel, SoftDeletableModel):
-    dialog = models.ForeignKey(Dialog, verbose_name=_("Dialog"), related_name="messages",on_delete=models.DO_NOTHING)
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("Author"), related_name="messages",on_delete=models.DO_NOTHING)
+    dialog = models.ForeignKey(Dialog, verbose_name=_("Dialog"), related_name="messages",on_delete=models.CASCADE)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("Author"), related_name="messages",on_delete=models.CASCADE)
     text = models.TextField(verbose_name=_("Message text"))
     read = models.BooleanField(verbose_name=_("Read"), default=False)
     all_objects = models.Manager()

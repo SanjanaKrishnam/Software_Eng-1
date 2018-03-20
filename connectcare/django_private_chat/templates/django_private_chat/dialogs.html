@@ -3,10 +3,12 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+<title>Chat Messenger</title>
 {% block css %}
 {% endblock css %}
 
 {% block content %}
+
     <input id="owner_username" type="hidden" value="{{ request.user.username }}">
     <div class="container">
         <div class="col-md-3">
