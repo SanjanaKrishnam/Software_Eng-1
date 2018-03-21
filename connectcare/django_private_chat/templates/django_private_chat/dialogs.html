@@ -3,9 +3,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
-<title>Chat Messenger</title>
 {% block css %}
 {% endblock css %}
+
 
 {% block content %}
 
@@ -59,9 +59,9 @@
                                 <div class="row  {% if msg.read %}msg-read{% else %}msg-unread{% endif %} {% if msg.sender != request.user %}opponent{% endif %}"
                                      data-id="{{ msg.id }}">
                                     <p class="{% if msg.sender == request.user %}pull-left{% else %}pull-right{% endif %}">
-                                        <span class="username">{{ msg.sender.username }}:</span>
+                                        <span class="username" style = "font-size:15px;">{{ msg.sender.username }}:</span>
                                         {{ msg.text }}
-                                        <span class="timestamp">&ndash; <span
+                                        <span class="timestamp" >&ndash; <span
                                                 data-livestamp="{{ msg.get_formatted_create_datetime }}">{{ msg.get_formatted_create_datetime }}</span></span>
                                     </p>
                                 </div>
