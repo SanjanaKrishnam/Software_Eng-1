@@ -118,8 +118,8 @@ TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
-USE_L10N = True
-
+USE_L10N = False
+DATETIME_INPUT_FORMATS = ['%d/%m/%y %H:%M']
 USE_TZ = True
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = '/'
