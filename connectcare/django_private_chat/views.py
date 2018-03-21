@@ -30,6 +30,8 @@ class DialogListView(LoginRequiredMixin, generic.ListView):
         if p.type=='Public':
             raise Http404
         dialogs = models.Dialog.objects.filter(Q(owner=self.request.user) | Q(opponent=self.request.user))
+    #    if not dialogs:
+    #        raise Http404
         return dialogs
 
     def get_context_data(self, **kwargs):
@@ -38,6 +40,9 @@ class DialogListView(LoginRequiredMixin, generic.ListView):
             raise Http404
         context = super().get_context_data()
         jd = json.decoder.JSONDecoder()
+        if p.auth is None:
+            p.auth = json.dumps([])
+            p.save()
         k = jd.decode(p.auth)
         if self.kwargs.get('username'):
             # TODO: show alert that user is not found instead of 404
@@ -51,7 +56,8 @@ class DialogListView(LoginRequiredMixin, generic.ListView):
                 dialog = dialog[0]
             context['active_dialog'] = dialog
         else:
-            context['active_dialog'] = self.object_list[0]
+            return context
+        context['active_dialog'] = self.object_list[0]
         if self.request.user == context['active_dialog'].owner:
             context['opponent_username'] = context['active_dialog'].opponent.username
         else:
