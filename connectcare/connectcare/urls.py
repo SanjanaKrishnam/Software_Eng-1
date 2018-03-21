@@ -6,10 +6,13 @@ from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from uploads import views
+from django_private_chat import urls as django_private_chat_urls
+
 
 
 
 urlpatterns = [
+        url(r'^', include('django_private_chat.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^',include('mysite.urls')),
     url(r'^home/',include('home.urls')),

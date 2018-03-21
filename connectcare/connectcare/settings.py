@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'uploads',
     'profiledet',
     'testres',
-    'forum'
+    'forum',
+    'django_private_chat'
 ]
 
 
@@ -118,14 +119,15 @@ TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 
 USE_L10N = True
-
 USE_TZ = True
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+CHAT_WS_SERVER_HOST = 'localhost'
+CHAT_WS_SERVER_PORT = 5002
+CHAT_WS_SERVER_PROTOCOL = 'ws'
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

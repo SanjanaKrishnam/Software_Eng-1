@@ -6,9 +6,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from profiledet.models import USERMODEL
 import json
-
-
-
+from django_private_chat.models import Dialog
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 
 
 @login_required()
@@ -51,6 +51,8 @@ def auth(request):
             k.append(sq.name)
             p.auth = json.dumps(k)
             p.save()
+        user = get_object_or_404(get_user_model(), username=sq.name)
+        Dialog.objects.create(owner = request.user, opponent = user)
         return render(request,'home/auth.html',{'type':sq})
 
 
