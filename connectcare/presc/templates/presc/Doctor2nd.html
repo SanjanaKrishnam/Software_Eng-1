@@ -1,0 +1,28 @@
+{% extends 'home/Navbar2.html' %}
+{%block content%}
+
+<title>View Prescribed Medicines</title>
+
+<center>
+<h1>Prescribe medicines for {{name}}</h1></br>
+<form type="get" action="uploadpresc">
+  <input id = "name" type = "hidden" name ="uploadtest" value = {{user}}>
+</br>
+  <button id="search_submit" type="submit" >New Prescription</button>
+
+</form>
+</br>
+
+  <ul class = "new">
+    <p style = " color:black;">Previously Prescribed:</p>
+    {% for obj in documents %}
+      <li>
+        {{obj.medicine}}<br>
+        {{obj.Notes}} <br>
+        <small style = "font-size:20px;">Uploaded by {{obj.doctor}} on {{ obj.date }}</small>
+      </li>
+    {% endfor %}
+  </ul>
+  <a style = " font-size:30px;" href = "/presc"></br>Return</a>
+</center>
+{% endblock %}

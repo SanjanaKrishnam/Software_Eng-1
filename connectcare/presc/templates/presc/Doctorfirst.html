@@ -1,0 +1,19 @@
+{% extends 'home/Navbar2.html' %}
+{%block content%}
+<title>Prescriptions</title>
+<center>
+<h1> Patients authorized for {{name}}</h1>
+</br>
+<ul class = "new">
+{% for obj in stuff%}
+<li> Patient name : {{obj.aname}}</br>
+
+<form type="get" action="Patup">
+  <input id = "name" type = "hidden" name ="Pat_up" value = {{obj.name}}>
+  <button id="search_submit" type="submit" >Upload Prescription</button>
+</li>
+</form>
+{% endfor %}
+</ul>
+</center>
+{%endblock%}
