@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 import json
 from django.http import HttpResponse
 from .models import Presc
+from .forms import PrescriptionForm
 
 @login_required()
 def upl(request):
@@ -16,7 +17,15 @@ def upl(request):
     p = USERMODEL.objects.get(name= request.user.username)
     if p.type!='Doctor':
         return HttpResponseRedirect("/home")
-    return render(request,'presc/Doctor3rd.html')
+    if request.method =='GET':
+        sq = request.GET.get('uploadtest')
+        if sq == None:
+            return HttpResponseRedirect('/home')
+        j = USERMODEL.objects.filter(name = sq)
+        if not j:
+            return HttpResponseRedirect('/home')
+        j = USERMODEL.objects.get(name = sq)
+        return render(request,'presc/Doctor3rd.html',{'names':j.aname})
 
 @login_required()
 def patup(request):
