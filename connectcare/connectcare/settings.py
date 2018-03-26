@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'profiledet',
     'testres',
     'forum',
-    'django_private_chat'
+    'django_private_chat',
+    'presc',
 ]
 
 

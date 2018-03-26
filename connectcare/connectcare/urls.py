@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout,{'template_name': '../templates/registration/logout.html'}, name='logout'),
     url(r'^forum/',include('forum.urls')),
+    url(r'^presc/',include('presc.urls')),
              ]
 
 if settings.DEBUG:
