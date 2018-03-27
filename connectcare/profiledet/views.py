@@ -14,7 +14,6 @@ from django.views.generic import TemplateView, ListView, CreateView
 def showform(request):
     p = USERMODEL.objects.filter(name = request.user.username)
     if not p:
-
         form = UserTypeForm(request.POST or None)
         context = {'form':form}
         if form.is_valid():

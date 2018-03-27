@@ -11,5 +11,5 @@ class PrescriptionForm(forms.ModelForm):
         labels = {'date':'Date','medicine':'Medicine','Notes':'Instructions'}
         fields=['date','medicine','Notes']
         widgets ={
-        'date': DateInput(attrs={})
+        'date': DateInput(attrs={'type':'date'})
         }

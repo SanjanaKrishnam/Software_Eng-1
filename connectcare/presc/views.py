@@ -25,7 +25,21 @@ def upl(request):
         if not j:
             return HttpResponseRedirect('/home')
         j = USERMODEL.objects.get(name = sq)
-        return render(request,'presc/Doctor3rd.html',{'names':j.aname})
+        form = PrescriptionForm(request.POST or None)
+        context = {'form':form,'names':j.aname,'set':j.name}
+        return render(request,'presc/Doctor3rd.html',context)
+    if request.method == 'POST':
+        sq = request.POST.get('uploadtest')
+        form = PrescriptionForm(request.POST or None)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.doctor = request.user.username
+            obj.patient = sq
+            obj.save()
+            k = '/presc/Patup?Pat_up='
+            k = k+str(sq)
+            return HttpResponseRedirect(k)
+
 
 @login_required()
 def patup(request):
