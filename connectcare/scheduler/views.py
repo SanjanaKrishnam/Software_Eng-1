@@ -12,6 +12,8 @@ from django.contrib.admin import models
 from django.contrib.contenttypes.models import ContentType
 from django.utils.text import get_text_list
 from django.core.mail import EmailMessage
+import json
+
 
 
 def get_change_message(fields):
@@ -118,6 +120,8 @@ def handle_appointment_form(request, body, user, appointment=None):
                                              doctor=doctor, patient=patient)
     doc = doctor.email
     pat = patient.email
+    date = appointment.date
+    parsed = date.strftime('%d-%m-%y %H:%M')
     Sub = 'New Appointment'
     Bodydoc = 'New appointment on '+ str(parsed) + ' for a duration of ' + str(duration) + ' minutes\nThe appointment is with ' + patient.aname
     Bodypat = 'New appointment on '+ str(parsed) + ' for a duration of ' + str(duration) + ' minutes\nThe appointment is with ' + doctor.aname
