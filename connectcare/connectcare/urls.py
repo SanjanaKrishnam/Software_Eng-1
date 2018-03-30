@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout,{'template_name': '../templates/registration/logout.html'}, name='logout'),
     url(r'^forum/',include('forum.urls')),
     url(r'^presc/',include('presc.urls')),
+    url(r'^schedule/', include('scheduler.urls')),
              ]
 
 if settings.DEBUG:

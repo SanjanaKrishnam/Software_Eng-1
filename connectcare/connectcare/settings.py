@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'forum',
     'django_private_chat',
     'presc',
+    'scheduler'
 ]
 
 
