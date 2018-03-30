@@ -15,6 +15,7 @@ class USERMODEL(models.Model):
     field = models.CharField(max_length = 255,blank= True,null = True)
     sex = models.CharField(max_length = 10,choices = Gend,default = 'M',null=True)
     auth = models.TextField(null=True)
+    email = models.CharField(max_length=100,null = True)
 
 
 

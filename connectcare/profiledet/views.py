@@ -19,6 +19,7 @@ def showform(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.name = request.user.username
+            obj.email = request.user.email
             request.user.usertype = obj.type
             obj.save()
             return HttpResponseRedirect("/profile")
