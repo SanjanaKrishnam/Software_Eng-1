@@ -7,14 +7,17 @@ from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from profiledet.models import USERMODEL
+from django.core.mail import send_mail
+from django.contrib.auth import logout
+from django.conf import settings
+from django.core.mail import EmailMessage
 # Create your views here.
 
 def home(request):
     return render(request, 'mysite/home.html')
 def register(request):
-    p = USERMODEL.objects.filter(name=request.user.username)
-    if p:
-        return HttpResponseRedirect("/home")
+    if request.user.is_authenticated:
+        logout(request)
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -23,10 +26,16 @@ def register(request):
             email =  userObj['email']
             password =  userObj['password']
             if not (User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
-                User.objects.create_user(username, email, password)
-                user = authenticate(username = username, password = password)
-                login(request, user)
-                return HttpResponseRedirect('/profile')
+                em = EmailMessage('Welcome to ConnectCare','Thank you for signing up at ConnectCare',to=[email])
+                try:
+                    em.send()
+                    User.objects.create_user(username, email, password)
+                    user = authenticate(username = username, password = password)
+                    login(request, user)
+                    return HttpResponseRedirect('/profile')
+                except:
+                    messages.info(request,'Invalid e-mail id')
+                    form = UserRegistrationForm()
             else:
                 messages.info(request,'Username or e-mail id has already been registered')
                 form = UserRegistrationForm()
